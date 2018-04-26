@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="INF354Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblClient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Lastname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="titleID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'INF354.dbo.tblClientFurniture' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblClientFurniture">
+    <Key>
+      <PropertyRef Name="clientId" />
+      <PropertyRef Name="furnitureId" />
+      <PropertyRef Name="date" />
+    </Key>
+    <Property Name="clientId" Type="int" Nullable="false" />
+    <Property Name="furnitureId" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblFurniture">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="typeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblFurnitureType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTitle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tblClient__clien__2C3393D0">
+    <End Role="tblClient" Type="Self.tblClient" Multiplicity="1" />
+    <End Role="tblClientFurniture" Type="Self.tblClientFurniture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblClient">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblClientFurniture">
+        <PropertyRef Name="clientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblClient__furni__2D27B809">
+    <End Role="tblFurniture" Type="Self.tblFurniture" Multiplicity="1" />
+    <End Role="tblClientFurniture" Type="Self.tblClientFurniture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFurniture">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblClientFurniture">
+        <PropertyRef Name="furnitureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblClient__title__276EDEB3">
+    <End Role="tblTitle" Type="Self.tblTitle" Multiplicity="1" />
+    <End Role="tblClient" Type="Self.tblClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTitle">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblClient">
+        <PropertyRef Name="titleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblFurnit__typeI__2A4B4B5E">
+    <End Role="tblFurnitureType" Type="Self.tblFurnitureType" Multiplicity="1" />
+    <End Role="tblFurniture" Type="Self.tblFurniture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFurnitureType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblFurniture">
+        <PropertyRef Name="typeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="INF354ModelStoreContainer">
+    <EntitySet Name="tblClient" EntityType="Self.tblClient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFurniture" EntityType="Self.tblFurniture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFurnitureType" EntityType="Self.tblFurnitureType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTitle" EntityType="Self.tblTitle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblClientFurniture" EntityType="Self.tblClientFurniture" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblClientFurniture].[clientId] AS [clientId], 
+    [tblClientFurniture].[furnitureId] AS [furnitureId], 
+    [tblClientFurniture].[date] AS [date]
+    FROM [dbo].[tblClientFurniture] AS [tblClientFurniture]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tblClient__clien__2C3393D0" Association="Self.FK__tblClient__clien__2C3393D0">
+      <End Role="tblClient" EntitySet="tblClient" />
+      <End Role="tblClientFurniture" EntitySet="tblClientFurniture" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblClient__furni__2D27B809" Association="Self.FK__tblClient__furni__2D27B809">
+      <End Role="tblFurniture" EntitySet="tblFurniture" />
+      <End Role="tblClientFurniture" EntitySet="tblClientFurniture" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblClient__title__276EDEB3" Association="Self.FK__tblClient__title__276EDEB3">
+      <End Role="tblTitle" EntitySet="tblTitle" />
+      <End Role="tblClient" EntitySet="tblClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblFurnit__typeI__2A4B4B5E" Association="Self.FK__tblFurnit__typeI__2A4B4B5E">
+      <End Role="tblFurnitureType" EntitySet="tblFurnitureType" />
+      <End Role="tblFurniture" EntitySet="tblFurniture" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

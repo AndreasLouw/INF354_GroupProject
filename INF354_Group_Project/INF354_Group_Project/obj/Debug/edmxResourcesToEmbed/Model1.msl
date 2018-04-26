@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="INF354ModelStoreContainer" CdmEntityContainer="INF354Entities">
+    <EntitySetMapping Name="tblClients">
+      <EntityTypeMapping TypeName="INF354Model.tblClient">
+        <MappingFragment StoreEntitySet="tblClient">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="titleID" ColumnName="titleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFurnitures">
+      <EntityTypeMapping TypeName="INF354Model.tblFurniture">
+        <MappingFragment StoreEntitySet="tblFurniture">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="typeID" ColumnName="typeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFurnitureTypes">
+      <EntityTypeMapping TypeName="INF354Model.tblFurnitureType">
+        <MappingFragment StoreEntitySet="tblFurnitureType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTitles">
+      <EntityTypeMapping TypeName="INF354Model.tblTitle">
+        <MappingFragment StoreEntitySet="tblTitle">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblClientFurnitures">
+      <EntityTypeMapping TypeName="INF354Model.tblClientFurniture">
+        <MappingFragment StoreEntitySet="tblClientFurniture">
+          <ScalarProperty Name="clientId" ColumnName="clientId" />
+          <ScalarProperty Name="furnitureId" ColumnName="furnitureId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
