@@ -1,4 +1,10 @@
+Use Master
+Go
+If Exists (Select * from sys.databases where name = 'INF354')
+DROP DATABASE INF354
+Go
 CREATE DATABASE INF354
+go
 
 USE INF354
 GO
